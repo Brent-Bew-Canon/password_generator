@@ -13,5 +13,7 @@ Use this web app as a random password generator. Passwords can be used for login
 N/A
 
 # Live Link
+https://brent-bew-canon.github.io/password_generator/
 
 ## Screenshot
+![Password Generator Screenshot](Develop/images/password%20screenshot.png)
