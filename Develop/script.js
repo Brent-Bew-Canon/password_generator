@@ -1,12 +1,14 @@
 // Assignment code here
 
 let passCriteria = {
-  length: 0,
+  characters: 0,
   lowercase: false,
   uppercase: false,
   numbers: false,
   specialChar: false
 }
+
+let newPassword = []
 
 
 // uppercase and lowercase arrays
@@ -22,8 +24,6 @@ function uppcase(uc) {
   }
 }
 
-uppcase(passCriteria.uppercase)
-console.log(uppercaseArray)
 
 
 let lowercaseArray = [...Array(26)];
@@ -37,15 +37,14 @@ function lowcase(lc) {
   }
 }
 
-lowcase(passCriteria.lowercase)
-console.log(lowercaseArray)
+
+
 
 
 // special character array
 
 let special = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "=", "_", "+", "<", ">", "?", "/"]
 
-console.log(special);
 
 
 
@@ -58,7 +57,7 @@ function number(num) {
   }
 }
 
-number(passCriteria.numbers)
+
 
 
 // prompt series 
@@ -68,17 +67,26 @@ function generatePassword() {
   wantLowercase()
   wantNumbers()
   wantSpecial()
+  assemblePassword()
+}
 
+function assemblePassword() {
+  for (let i = 0; i < passCriteria.characters.length; i++) {
+    if (passCriteria.lowercase == "true") {
+
+    }
+
+  }
 }
 
 
-// function log -------------------------------------------------------------
+// Prompt functions log -------------------------------------------------------------
 
 function howLong() {
-  passCriteria.length = prompt("How many characters? (8 - 128)", 8)
-  console.log(typeof passCriteria.length)
-  while (passCriteria.length < 8 || passCriteria.length > 128) {
-    passCriteria.length = prompt("Error: Enter Number of Characters between 8  and 128", 8)
+  passCriteria.characters = prompt("How many characters? (8 - 128)", 8)
+  console.log(typeof passCriteria.characters)
+  while (passCriteria.characters < 8 || passCriteria.characters > 128) {
+    passCriteria.characters = prompt("Error: Enter Number of Characters between 8  and 128", 8)
   }
 }
 
@@ -88,6 +96,9 @@ function wantUppercase() {
   while (passCriteria.uppercase !== "true" && passCriteria.uppercase !== "false") {
     upper = prompt("Error, Please enter True or False: Do you want uppercase letters? True/False")
     passCriteria.uppercase = upper
+  }
+  if (passCriteria.uppercase == "true") {
+    uppcase(passCriteria.uppercase)
   }
 }
 
@@ -99,6 +110,9 @@ function wantLowercase() {
     lower = prompt("Error, Please enter True or False: Do you want lowercase letters? True/False")
     passCriteria.lowercase = lower.trim(lower.toLowerCase)
   }
+  if (passCriteria.lowercase == "true") {
+    lowcase(passCriteria.lowercase)
+  }
 }
 
 
@@ -108,6 +122,9 @@ function wantNumbers() {
   while (passCriteria.numbers !== "true" && passCriteria.numbers !== "false") {
     number = prompt("Error, Please enter True or False: Do you want numbers? True/False")
     passCriteria.numbers = number.trim(number.toLowerCase)
+  }
+  if (passCriteria.numbers == "true") {
+    number(passCriteria.numbers)
   }
 }
 
@@ -121,7 +138,7 @@ function wantSpecial() {
   }
 }
 
-// function log end -------------------------------------------------------
+// Prompt functions log end -------------------------------------------------------
 
 
 
