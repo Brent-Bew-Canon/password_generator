@@ -15,7 +15,7 @@ let uppercaseArray = [...Array(26)];
 let lowercaseArray = [...Array(26)];
 let special = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "=", "_", "+", "<", ">", "?", "/"];
 
-function uppcase(uc) {
+function uppcase() {
   let y = 65
   for (let i = 0; i < uppercaseArray.length; i++) {
     uppercaseArray[i] = String.fromCharCode(y)
@@ -23,7 +23,7 @@ function uppcase(uc) {
   }
 }
 
-function lowcase(lc) {
+function lowcase() {
   let x = 97
   for (let i = 0; i < lowercaseArray.length; i++) {
     lowercaseArray[i] = String.fromCharCode(x)
@@ -31,23 +31,23 @@ function lowcase(lc) {
   }
 }
 
-// assemble password function
+// Function to assemble the password based on chosen criteria
 
 function assemblePassword() {
   for (let i = 0; i < passCriteria.characters; i++) {
-    if (passCriteria.lowercase == "true") {
+    if (passCriteria.lowercase == true) {
       newPassword.push(lowercaseArray[Math.floor(Math.random() * (lowercaseArray.length - 0))])
       i++
     }
-    if (passCriteria.uppercase == "true" && i < passCriteria.characters) {
+    if (passCriteria.uppercase == true && i < passCriteria.characters) {
       newPassword.push(uppercaseArray[Math.floor(Math.random() * (uppercaseArray.length - 0))])
       i++
     }
-    if (passCriteria.numbers == "true" && i < passCriteria.characters) {
+    if (passCriteria.numbers == true && i < passCriteria.characters) {
       newPassword.push(Math.floor(Math.random() * (0 - 10)))
       i++
     }
-    if (passCriteria.specialChar == "true" && i < passCriteria.characters) {
+    if (passCriteria.specialChar == true && i < passCriteria.characters) {
       newPassword.push(special[Math.floor(Math.random() * (special.length - 0))])
       i++
     }
@@ -55,7 +55,7 @@ function assemblePassword() {
   }
 }
 
-// Prompt functions log --------------------------------
+// Prompt functions  --------------------------------
 
 function howLong() {
   passCriteria.characters = prompt("How many characters? (8 - 128)", 8)
@@ -65,51 +65,31 @@ function howLong() {
 }
 
 function wantUppercase() {
-  let upper = prompt("Do you want uppercase letters? True/False")
-  passCriteria.uppercase = upper.trim(upper.toLowerCase)
-  while (passCriteria.uppercase !== "true" && passCriteria.uppercase !== "false") {
-    upper = prompt("Error, Please enter True or False: Do you want uppercase letters? True/False")
-    passCriteria.uppercase = upper
-  }
-  if (passCriteria.uppercase == "true") {
-    uppcase(passCriteria.uppercase)
+  passCriteria.uppercase = confirm("Do you want uppercase letters?")
+  if (passCriteria.uppercase == true) {
+    uppcase();
   }
 }
 
 
 function wantLowercase() {
-  let lower = prompt("Do you want lowercase letters? True/False");
-  passCriteria.lowercase = lower.trim(lower.toLowerCase)
-  while (passCriteria.lowercase !== "true" && passCriteria.lowercase !== "false") {
-    lower = prompt("Error, Please enter True or False: Do you want lowercase letters? True/False")
-    passCriteria.lowercase = lower.trim(lower.toLowerCase)
-  }
-  if (passCriteria.lowercase == "true") {
-    lowcase(passCriteria.lowercase)
+  passCriteria.lowercase = confirm("Do you want lowercase letters?");
+  if (passCriteria.lowercase == true) {
+    lowcase();
   }
 }
 
 
 function wantNumbers() {
-  let number = prompt("Do you want numbers? True/False")
-  passCriteria.numbers = number.trim(number.toLowerCase)
-  while (passCriteria.numbers !== "true" && passCriteria.numbers !== "false") {
-    number = prompt("Error, Please enter True or False: Do you want numbers? True/False")
-    passCriteria.numbers = number.trim(number.toLowerCase)
-  }
+  passCriteria.numbers = confirm("Do you want numbers?")
 }
 
 
 function wantSpecial() {
-  let special = prompt("Do you want special characters? True/False")
-  passCriteria.specialChar = special.trim(special.toLowerCase)
-  while (passCriteria.specialChar !== "true" && passCriteria.specialChar !== "false") {
-    special = prompt("Error, Please enter True or False: Do you want special characters? True/False")
-    passCriteria.specialChar = special.trim(special.toLowerCase)
-  }
+  passCriteria.specialChar = confirm("Do you want special characters?")
 }
 
-// main function -----------------------------------
+// Function that calls prompts, assembles password, then returns the completed password -----------------------------------
 
 function generatePassword() {
   newPassword = []
@@ -128,12 +108,12 @@ function generatePassword() {
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
-// Write password to the #password input ---------------------------------
+// Main function to Write password to the #password input ---------------------------------
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
 }
 
-// Add event listener to generate button
+// event listener to generate button
 generateBtn.addEventListener("click", writePassword);
